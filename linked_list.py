@@ -16,6 +16,7 @@ class Linked_list:
         self.tail = new_node    # self.tail.next is none
         self.head = new_node
         self.length = 1
+        # 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
 
 
 
@@ -26,12 +27,16 @@ class Linked_list:
             self.tail = new_node
         else:
             self.tail.next = new_node
-            self.tail = None
+            self.tail = new_node
+
 
         self.length+=1
 
     def print_list(self):
-        pass
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
 
     def pop(self): # this is 0(n) as we need to iterate from head
          if self.length == 0:  # we check if length of LL is 0, if True then we return None
@@ -48,3 +53,71 @@ class Linked_list:
          if self.length == 0:
              self.head = None
              self.tail = None
+
+    def pop_first(self):
+        if self.length ==0:
+            return False
+        temp = self.head
+        self.head = temp.next
+        temp.next = None
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+
+
+    def insert(self, index, value):
+        new_node= Node(value)
+        # Edge Scenarios
+            # Index is out of range
+            # Length of list is 0
+        if index > self.length or index < 0:
+            return False
+        if index == self.length:
+            self.tail.next = new_node
+            self.tail = new_node
+            self.length += 1
+            return True
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+            self.length += 1
+            return True
+        if index ==0:
+            new_node.next = self.head
+            self.head = new_node
+            self.length += 1
+            return True
+        else:
+            temp = self.head
+            pre = self.head
+            for _ in range(index):
+                pre = temp
+                temp = temp.next
+            pre.next = new_node
+            new_node.next = temp
+            self.length +=1
+            return True
+
+
+ll = Linked_list(5)
+ll.append(6)
+ll.append(6)
+ll.append(6)
+ll.append(6)
+ll.append(6)
+ll.append(6)
+ll.print_list()
+print("----------------------------------------------------")
+print(ll.length)
+print("----------------------------------------------------")
+
+ll.insert(7, 10)
+ll.insert(3, 10)
+ll.insert(5, 10)
+ll.insert(6, 10)
+
+
+print("-------------------------7777---------------------------")
+print(ll.length)
+print("-------------------------7777---------------------------")
+ll.print_list()
