@@ -16,9 +16,6 @@ class Linked_list:
         self.tail = new_node    # self.tail.next is none
         self.head = new_node
         self.length = 1
-        # ghp_ this_ pUl9DOpp4a0xj _ this_ FokUcq9aEV0xg76GN36UvYg
-
-
 
     def append(self, value):
         new_node = Node(value)
