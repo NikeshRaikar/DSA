@@ -1,5 +1,7 @@
 # Author : Nikesh Jagadeesh Raikar
 # Date: Jan 28, 2026
+# from cgi import print_arguments
+
 
 class Node:
 
@@ -51,15 +53,15 @@ class Linked_list:
              self.head = None
              self.tail = None
 
-    def pop_first(self):
-        if self.length ==0:
-            return False
-        temp = self.head
-        self.head = temp.next
-        temp.next = None
-        if self.length == 0:
-            self.head = None
-            self.tail = None
+    # def pop_first(self):
+    #     if self.length ==0:
+    #         return False
+    #     temp = self.head
+    #     self.head = temp.next
+    #     temp.next = None
+    #     if self.length == 0:
+    #         self.head = None
+    #         self.tail = None
 
 
     def insert(self, index, value):
@@ -95,11 +97,51 @@ class Linked_list:
             self.length +=1
             return True
 
+    def prepend(self, value):
+        new_node = Node(value)
+        if self.length == 0:
+            self.head = new_node
+            self.tail = new_node
+            self.length +=1
+        else:
+            new_node.next = self.head
+            self.head = new_node
+            self.length +=1
+        return True
+
+
+    def pop_first(self):
+        if self.length == 0:
+            return False
+        temp = self.head
+        if self.length == 1:
+            self.head = None
+            self.tail = None
+        else:
+            self.head = temp.next
+            temp.next = None
+            self.length -= 1
+        return temp
+
+    def get(self, index):
+        if index > self.length or index < 0:
+            return False
+        temp = self.head
+        for _ in range(index-1):
+            temp= temp.next
+        return temp
+
+
+
+
+
+
+
 
 ll = Linked_list(5)
 ll.append(6)
-ll.append(6)
-ll.append(6)
+ll.append(44444444444444444)
+ll.append(5555555555555)
 ll.append(6)
 ll.append(6)
 ll.append(6)
@@ -112,6 +154,14 @@ ll.insert(7, 10)
 ll.insert(3, 10)
 ll.insert(5, 10)
 ll.insert(6, 10)
+ll.prepend(777)
+ll.prepend(89)
+print("Printing the poped item")
+
+print("getting third item")
+print(ll.get().value)
+
+
 
 
 print("-------------------------7777---------------------------")
